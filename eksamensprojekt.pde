@@ -8,6 +8,11 @@ int x, y;
 int x2, y2;
 int turn =0;
 boolean state = false;
+boolean button = false;
+int x3 = 630;
+int y3 = 430;
+int w = 10;
+int h = 10;
 
 //---------------------------------------------------------------   
 
@@ -36,8 +41,22 @@ void setup () {
 
 void draw () {
   background(100);
+
   image(road, 0, 0, roadWidth, roadHeight); //billede af vejen
   image(road, 325, 0, roadWidth, roadHeight);
+
+  if (button) { //Knappen i nederste hjørne
+    background(0);
+    text("Spiller 1 styrer med 'A' og 'S'", 50, 125);
+    text("Spiller 2 styrer med 'K' og 'L'", 400, 125);
+    stroke(255);
+  } else {
+    //stroke(0);
+  }
+
+
+  rect(x3, y3, w, h);
+
   fill(255, 0, 0);
   rect(x, y, 20, 40);//(90, 370, 20, 40);
   text("point: "+point, 10, 20);
@@ -84,10 +103,9 @@ class Objekt {
     yposition = height/5;
     xposition = width/2;
     xspeed = 6;
-    yposition2 = 420;
+    yposition2 = 560;
     xposition2 = 30;
     xspeed2 = 6;
-
   }
   void display() { // TIl at få forhindringerne frem
     //Selve objekterne
@@ -96,7 +114,6 @@ class Objekt {
     fill(c);
     ellipse(yposition, xposition, 20, 20);
     ellipse(yposition2, xposition2, 20, 20);
-
   }
 
   void move() { // Funktionen der får forhindringerne til at bevæge sig
@@ -104,11 +121,16 @@ class Objekt {
     if (xposition > height) {
       xposition = 0;
     }
-    
-      xposition2 = xposition2 + xspeed2;
-      if (xposition2 > height) {
-        xposition2 = 0;
-      }
+
+    xposition2 = xposition2 + xspeed2;
+    if (xposition2 > height) {
+      xposition2 = 0;
+    }
   }
-  
+}
+
+void mousePressed() {
+  if (mouseX > x && mouseX < x3+w && mouseY > y3 && mouseY < y3+h) {
+    button = !button;
+  }
 }
