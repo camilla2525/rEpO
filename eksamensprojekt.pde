@@ -87,6 +87,7 @@ class Objekt {
     yposition2 = 420;
     xposition2 = 30;
     xspeed2 = 6;
+
   }
   void display() { // TIl at få forhindringerne frem
     //Selve objekterne
@@ -95,6 +96,7 @@ class Objekt {
     fill(c);
     ellipse(yposition, xposition, 20, 20);
     ellipse(yposition2, xposition2, 20, 20);
+
   }
 
   void move() { // Funktionen der får forhindringerne til at bevæge sig
@@ -102,11 +104,11 @@ class Objekt {
     if (xposition > height) {
       xposition = 0;
     }
-    {
+    
       xposition2 = xposition2 + xspeed2;
       if (xposition2 > height) {
         xposition2 = 0;
       }
-    }
   }
+  
 }
